@@ -10,7 +10,11 @@ class Transaction {
     
 
     static async getAllTransactionsOfTheDay(){
-        const q = query(collection(db, "transactions"), where("created_at",'<',new Date()));
+        var startOfToday = new Date(); 
+        startOfToday.setHours(0,0,0,0);
+        var endOfToday = new Date(); 
+        endOfToday.setHours(23,59,59,999);
+        const q = query(collection(db, "transactions"), where("created_at",'>=',startOfToday).where('created_at', '<=', endOfToday));
         let querySnapshot = await getDocs(q);
         let querySnapshotArray = querySnapshot.docs;
         const transactionTab = [];

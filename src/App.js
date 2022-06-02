@@ -32,7 +32,7 @@ function App() {
     startOfToday.setHours(0,0,0,0);
     var endOfToday = new Date(); 
     endOfToday.setHours(23,59,59,999);
-    ref.where('start','>=',startOfToday).where('start', '<=', endOfToday)
+    ref.where('created_at','>=',startOfToday).where('created_at', '<=', endOfToday)
     
   }, [])
 
