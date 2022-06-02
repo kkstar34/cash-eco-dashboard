@@ -1,23 +1,50 @@
-import logo from './logo.svg';
 import './App.css';
-
+import { useState, useEffect } from "react";
+import Client from './models/Client';
+import SalePoint from './models/SalePoint';
+import Transaction from './models/Transaction';
+import { Timestamp } from 'firebase/firestore';
 function App() {
+
+  const [clients, setClients] = useState([]);
+  const [salePoints, setSalePoints] = useState([]);
+  const [agents, setAgents] = useState([]);
+  const [transactions, setTransactions] = useState([]);
+  
+  useEffect(()=>{
+    Client.getAll()
+    .then((results)=> setClients(results));
+
+    Client.getAgents()
+    .then((results)=> setAgents(results));
+
+    SalePoint.getAll()
+    .then((results)=> setSalePoints(results));
+
+    // Transaction.getAllTransactionsOfTheDay()
+    // .then((results)=> setTransactions(results));
+
+
+    let date = new Date();
+    
+    // todaysDate = DateTime.now();
+    // yesterdayDate = DateTime.utc(todaysDate.year, todaysDate.month, todaysDate.day -1);
+    // const timpestamp = Timestamp.fromDate(date);
+
+    // console.log(timpestamp);
+
+    
+  }, [])
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div>
+        nombre de clients : {clients && clients.length} <br />
+        nombre de pdv : {salePoints && salePoints.length} <br />
+        nombre d'agent : {agents && agents.length} <br />
+        {/* nombre de transaction du jour : {transactions && transactions.length} <br /> */}
+     
+      </div>
     </div>
   );
 }
