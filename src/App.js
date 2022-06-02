@@ -21,18 +21,10 @@ function App() {
     SalePoint.getAll()
     .then((results)=> setSalePoints(results));
 
-    // Transaction.getAllTransactionsOfTheDay()
-    // .then((results)=> setTransactions(results));
+    Transaction.getAllTransactionsOfTheDay()
+    .then((results)=> setTransactions(results));
 
 
-    let date = new Date();
-    
-
-    var startOfToday = new Date(); 
-    startOfToday.setHours(0,0,0,0);
-    var endOfToday = new Date(); 
-    endOfToday.setHours(23,59,59,999);
-    ref.where('created_at','>=',startOfToday).where('created_at', '<=', endOfToday)
     
   }, [])
 
@@ -42,8 +34,7 @@ function App() {
         nombre de clients : {clients && clients.length} <br />
         nombre de pdv : {salePoints && salePoints.length} <br />
         nombre d'agent : {agents && agents.length} <br />
-        {/* nombre de transaction du jour : {transactions && transactions.length} <br /> */}
-     
+        nombre de transaction du jour : {transactions && transactions.length} <br />
       </div>
     </div>
   );
