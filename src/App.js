@@ -27,12 +27,12 @@ function App() {
 
     let date = new Date();
     
-    // todaysDate = DateTime.now();
-    // yesterdayDate = DateTime.utc(todaysDate.year, todaysDate.month, todaysDate.day -1);
-    // const timpestamp = Timestamp.fromDate(date);
 
-    // console.log(timpestamp);
-
+    var startOfToday = new Date(); 
+    startOfToday.setHours(0,0,0,0);
+    var endOfToday = new Date(); 
+    endOfToday.setHours(23,59,59,999);
+    ref.where('start','>=',startOfToday).where('start', '<=', endOfToday)
     
   }, [])
 
