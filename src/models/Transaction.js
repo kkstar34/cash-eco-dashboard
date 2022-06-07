@@ -16,12 +16,12 @@ class Transaction {
         endOfToday.setHours(23,59,59,999);
         const q = query(collection(db, "transactions"), where("created_at",'>=',startOfToday), where('created_at', '<=', endOfToday));
         let querySnapshot = await getDocs(q);
-        let querySnapshotArray = querySnapshot.docs;
-        const transactionTab = [];
-        for(let i = 0; i < querySnapshotArray.length;i++) {
-            transactionTab.push(querySnapshotArray[i].data());
-        }
-        return transactionTab;
+        let querySnapshotArray = querySnapshot.size;
+        // const transactionTab = [];
+        // for(let i = 0; i < querySnapshotArray.length;i++) {
+        //     transactionTab.push(querySnapshotArray[i].data());
+        // }
+        return querySnapshotArray;
     }
 
 }

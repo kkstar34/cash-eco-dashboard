@@ -1,42 +1,38 @@
 import './App.css';
-import { useState, useEffect } from "react";
-import Client from './models/Client';
-import SalePoint from './models/SalePoint';
-import Transaction from './models/Transaction';
-import { Timestamp } from 'firebase/firestore';
+
+import { UserAuthContextProvider } from './context/UserAuthContextProvider';
+import { Route, Routes } from 'react-router';
+import GuestMiddleware from './middleware/GuestMiddleware';
+
+
+import AuthMiddleware from './middleware/AuthMiddleware';
+import Home from './pages/Home';
+import Login from './pages/Auth/Login';
+import Register from './pages/Auth/Register';
+
 function App() {
 
-  const [clients, setClients] = useState([]);
-  const [salePoints, setSalePoints] = useState([]);
-  const [agents, setAgents] = useState([]);
-  const [transactions, setTransactions] = useState([]);
-  
-  useEffect(()=>{
-    Client.getAll()
-    .then((results)=> setClients(results));
 
-    Client.getAgents()
-    .then((results)=> setAgents(results));
-
-    SalePoint.getAll()
-    .then((results)=> setSalePoints(results));
-
-    Transaction.getAllTransactionsOfTheDay()
-    .then((results)=> setTransactions(results));
-
-
-    
-  }, [])
 
   return (
-    <div className="App">
-      <div>
-        nombre de clients : {clients && clients.length} <br />
-        nombre de pdv : {salePoints && salePoints.length} <br />
-        nombre d'agent : {agents && agents.length} <br />
-        nombre de transaction du jour : {transactions && transactions.length} <br />
-      </div>
-    </div>
+
+    <UserAuthContextProvider>
+    <Routes>
+      <Route path="/" element={<GuestMiddleware><Login/> </GuestMiddleware> }/>
+      <Route path="/register" element={<GuestMiddleware><Register/> </GuestMiddleware>}/>
+      <Route path="/home" element={<AuthMiddleware> <Home/> </AuthMiddleware>} />
+
+    </Routes>
+    </UserAuthContextProvider>
+    // <div className="App">
+    //   <div>
+    //     nombre de clients : {clients && clients.length} <br />
+    //     nombre de pdv : {salePoints && salePoints.length} <br />
+    //     nombre d'agent : {agents && agents.length} <br />
+    //     nombre de transaction du jour : {transactions && transactions.length} <br />
+    //     nombre d'inscrits par semaine : {registeredInTheWeek && registeredInTheWeek.length} <br />
+    //   </div>
+    // </div>
   );
 }
 
