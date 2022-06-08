@@ -16,13 +16,21 @@
       manifest.json provides metadata used when your web app is installed on a
       user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
     -->
-    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    <link rel="manifest" href="%PUBLIC_URL%manifest.json" />
+    <link rel="stylesheet" href="%PUBLIC_URL%css/datatable/datatable.bootstrap.css">
+    <link rel="stylesheet" href="%PUBLIC_URL%/css/bootstrap.min.css">
+    <link rel="stylesheet" href="%PUBLIC_URL%/css/main.css">
+    <link rel="stylesheet" href="%PUBLIC_URL%/css/animate.css">
+    <link rel="stylesheet" href="%PUBLIC_URL%/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="%PUBLIC_URL%/css/owl.theme.default.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
+
 
     <!-- Fonts -->
-    <link rel="dns-prefetch" href="//fonts.gstatic.com">
+    
 
     <!-- Styles -->
-    <link href="%PUBLIC_URL%/css/app.css" rel="stylesheet">
+ 
     <!--
       Notice the use of %PUBLIC_URL% in the tags above.
       It will be replaced with the URL of the `public` folder during the build.
@@ -47,6 +55,51 @@
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
+    <!--**************  -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <script src="%PUBLIC_URL%/js/jquery.min.js"></script>
+    <script src="%PUBLIC_URL%/js/bootstrap.min.js"></script>
+    <script src="%PUBLIC_URL%/js/app.js"></script>
+    <script src="%PUBLIC_URL%/js/wow.min.js"></script>
+    <script src="%PUBLIC_URL%/js/owl.carousel.min.js"></script>
+    <script src="%PUBLIC_URL%/js/datatable/datatable.advanced.js"></script>
+    <script src="%PUBLIC_URL%/js/datatable/datatable.basic.js"></script>
+    <script src="%PUBLIC_URL%/js/datatable/datatable.init.js"></script>
+    <script src="%PUBLIC_URL%/js/datatable/datatable.js"></script>
+
+        <!-- ********* -->
+        <script >
+           $(document).ready(function () {
+            console.log(document.querySelector('.owl-carousel'))
+            $('.owl-carousel').owlCarousel({
+                loop:true,
+                margin:10,
+                nav:true,
+                responsive:{
+                    0:{
+                        items:1
+                    },
+                    400:{
+                        items:2
+                    },
+                    600:{
+                        items:3
+                    },
+                    1000:{
+                        items:4
+                    }
+                }
+            })
+          });
+        </script>
+    
+        <!-- **** -->
+        <script>
+            $(document).ready(function () {
+                    $('#example').DataTable();
+                    $('#example2').DataTable();
+                });
+        </script>
+  
   </body>
 </html>
